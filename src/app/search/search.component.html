@@ -2,10 +2,13 @@
   <h2>Search something!</h2>
   <div class="form-group">
     <form [formGroup]="SearchForm">
-      Search: <input type="text" class="form-control" formControlName="search" /> Categories:<br />
-      <div *ngFor="let category of categories">
-        <mat-checkbox formControlName="category" (change)="onCheckboxChange(category)" >{{category}}</mat-checkbox>
+
+      Search: <input type="text" class="form-control" formControlName="search"/> Categories:<br />
+      
+      <div *ngFor="let category of categories; let i=index">
+        <mat-checkbox formArrayName="categoryfilters" >{{category}}</mat-checkbox>
       </div>
+    
     </form>
   </div>
 </div>
