@@ -12,10 +12,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<string[]> {
-    const headers = new HttpHeaders().set('Content-type', 'application/json')
-    return this.http.get<string[]>(this.categoryURL, { headers: headers }).pipe(pluck('categories'));
-    // .pipe(
-    //   catchError(this.handleError<string[]>('getCategories', []))
-    // );
+    const headers = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.get<string[]>(this.categoryURL, { headers }).pipe(pluck('categories'));
   }
 }
