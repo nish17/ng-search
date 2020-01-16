@@ -5,7 +5,7 @@ import {CategoryService} from './category.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'ng-search';
   categories = [];
   constructor(private categoryService: CategoryService) {}
@@ -15,6 +15,5 @@ export class AppComponent implements OnInit{
   }
   getCategories(): void {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
-    console.log(this.categories);
   }
 }
