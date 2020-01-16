@@ -11,27 +11,28 @@ export class SearchComponent implements OnInit {
   fetchedCategories: string[];
   SearchForm: FormGroup;
   searchTerm: string;
-  controlArr: FormControl[];
-  formArr: FormArray;
-  constructor(private categoryService: CategoryService, private fb: FormBuilder) { }
+  controlArr: FormControl[] = [];
+  constructor(private categoryService: CategoryService, private fb: FormBuilder) {
+    this.getCategories();
+  }
 
   ngOnInit() {
-    this.SearchForm = this.fb.group({
+    this.SearchForm = new FormGroup({
       search: new FormControl(''),
-      categoryfilters: this.formArr
+      categoryfilters: new FormArray(this.controlArr)
       // new FormArray(this.controlArr)
     });
-    this.getCategories();
-    this.SearchForm.valueChanges.subscribe(console.log);
+    this.SearchForm.valueChanges.subscribe(
+      () => { console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value) });
   }
+
+
   getCategories() {
     this.categoryService.getCategories().subscribe(categories => {
       this.fetchedCategories = categories;
-      // this.controlArr = [new FormArray(new Array(this.fetchedCategories.length).fill(new FormControl('false')))];
-      this.controlArr = new Array(this.fetchedCategories.length).fill(new FormControl('false'));
-      this.formArr = new FormArray(this.controlArr);
-      console.log(this.controlArr);
-      console.log(this.formArr);
+      this.fetchedCategories.forEach(() => this.controlArr.push(new FormControl(false)));
+      this.SearchForm.setControl('categoryfilters', new FormArray(this.controlArr));
+      // console.log(this.controlArr);
     });
   }
 }
