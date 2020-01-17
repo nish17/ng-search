@@ -1,5 +1,5 @@
-import { Component,OnInit } from '@angular/core';
-import {CategoryService} from './category.service';
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './category.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +8,7 @@ import {CategoryService} from './category.service';
 export class AppComponent implements OnInit {
   title = 'ng-search';
   categories = [];
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getCategories();
