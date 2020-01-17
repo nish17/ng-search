@@ -6,8 +6,9 @@
       type="text"
       class="form-control"
       formControlName="search"
-    />Categories: <br />
-      <div class="code" formArrayName="categoryfilters">
+    />
+    <div class="code" formArrayName="categoryfilters">
+    Categories: <br />
         <div
           *ngFor="
             let filter of SearchForm.controls.categoryfilters.controls;
@@ -19,5 +20,7 @@
           }}</mat-checkbox>
         </div>
       </div>
+
+        <app-result-feed [results]="results"></app-result-feed>
   </form>
 </div>

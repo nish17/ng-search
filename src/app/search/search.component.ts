@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FetchDataService } from '../fetch-data.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -12,7 +13,8 @@ export class SearchComponent implements OnInit {
   SearchForm: FormGroup;
   searchTerm: string;
   controlArr: FormControl[] = [];
-  constructor(private categoryService: CategoryService, private fb: FormBuilder) {
+  results: {} = [{}];
+  constructor(private categoryService: CategoryService, private fb: FormBuilder, private fetchDataService: FetchDataService) {
     this.getCategories();
   }
 
@@ -23,7 +25,11 @@ export class SearchComponent implements OnInit {
       // new FormArray(this.controlArr)
     });
     this.SearchForm.valueChanges.subscribe(
-      () => { console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value) });
+      () => {
+        console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value);
+        this.searchTerm = this.SearchForm.get('search').value;
+        this.fetchDataService.getMovies(this.searchTerm).subscribe((results) => this.results = results);
+      });
   }
 
 
