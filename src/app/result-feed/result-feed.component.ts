@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FetchDataService } from '../fetch-data.service';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
+// import { FetchDataService } from '../fetch-data.service';
+import {SearchComponent} from '../search/search.component';
 @Component({
   selector: 'app-result-feed',
   templateUrl: './result-feed.component.html',
@@ -7,9 +8,14 @@ import { FetchDataService } from '../fetch-data.service';
 })
 export class ResultFeedComponent implements OnInit {
   @Input() results: string[] = [];
-  constructor(private fetchDataService: FetchDataService) { }
+  @Input() searchTerm: string;
+  constructor() {}
 
   ngOnInit() {
+    console.log(`Inside result-feed component==>${JSON.stringify(this.results)}`);
   }
-
+  ngOnChanges(changes: SimpleChanges){
+    this.results = changes.results.currentValue;
+    // console.log(changes);
+  }
 }

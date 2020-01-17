@@ -1,9 +1,23 @@
-<div *ngIf="results" else noResults>
+<div id="sideContent" *ngIf="results" else noResults>
   <mat-card class="example-card">
     <div *ngFor="let result of results">
-      <mat-card-title>Movie Name: {{ result.title }} <br />Rating: {{ result.rating }}</mat-card-title>
-    <mat-card-content>Year released: {{result.year}}, Genre: {{result.genre}}</mat-card-content>
+      <mat-card-title
+        >Movie Name: {{ result.title }} <br />Rating:
+        {{ result.rating }}</mat-card-title
+      >
+      
+      <mat-card-content> <strong> Year released: </strong> {{ result.year }}, <strong>Genre: </strong>
+        {{ result.genre }}</mat-card-content
+      >
+      <hr>
     </div>
   </mat-card>
 </div>
 <ng-component #noResults></ng-component>
+
+<!-- 
+ <div *ngIf="searchTerm">
+   <mat-card class="example-card">
+     <h1>{{searchTerm}}</h1>
+   </mat-card>
+ </div> -->
