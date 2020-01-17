@@ -10,7 +10,8 @@ export class FetchDataService {
   private searchURL = 'https://movie-search-project.herokuapp.com/movie?q=';
   constructor(private http: HttpClient) { }
 
-  getMovies(searhTerm: string){
-    return this.http.get<object[]>(this.searchURL).pipe(pluck('results'));
+  getMovies(searhTerm: string) {
+    const URL = this.searchURL + searhTerm;
+    return this.http.get<object[]>(URL).pipe(pluck('results'));
   }
 }
