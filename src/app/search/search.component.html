@@ -2,25 +2,21 @@
   <h2>Search something!</h2>
   <form [formGroup]="SearchForm">
     Search:
-    <input
-      type="text"
-      class="form-control"
-      formControlName="search"
-    />
-    <div class="code" formArrayName="categoryfilters">
-    Categories: <br />
-        <div
-          *ngFor="
-            let filter of SearchForm.controls.categoryfilters.controls;
-            let i = index
-          "
-        >
-          <mat-checkbox type="checkbox" [formControlName]="i" value>{{
-            categories[i]
-          }}</mat-checkbox>
-        </div>
+    <input type="text" class="form-control" formControlName="search" />
+    <div id="sideContent" class="code" formArrayName="categoryfilters">
+      Categories: <br />
+      <div
+        *ngFor="
+          let filter of SearchForm.controls.categoryfilters.controls;
+          let i = index
+        "
+      >
+        <mat-checkbox type="checkbox" [formControlName]="i" value>{{
+          categories[i]
+        }}</mat-checkbox>
       </div>
+    </div>
 
-        <app-result-feed [results]="results"></app-result-feed>
+    <app-result-feed [results]="results"></app-result-feed>
   </form>
 </div>
