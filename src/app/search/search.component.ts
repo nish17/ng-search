@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   searchTerm: string;
   controlArr: FormControl[] = [];
   results: {} = [{}];
-  constructor(private categoryService: CategoryService, private fb: FormBuilder, private fetchDataService: FetchDataService) {
+  constructor(private categoryService: CategoryService, private fetchDataService: FetchDataService) {
     this.getCategories();
   }
 
@@ -29,6 +29,7 @@ export class SearchComponent implements OnInit {
         console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value);
         this.searchTerm = this.SearchForm.get('search').value;
         this.fetchDataService.getMovies(this.searchTerm).subscribe((results) => this.results = results);
+        // console.log(`this.results===>\n${JSON.stringify(this.results)}`);
       });
   }
 
