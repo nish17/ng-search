@@ -1,19 +1,25 @@
 <div id="sideContent" *ngIf="results" else noResults>
   <mat-card class="example-card">
-    <div *ngFor="let result of results">
-      <mat-card-title
-        >Movie Name: {{ result.title }} <br />Rating:
-        {{ result.rating }}</mat-card-title
-      >
-      
-      <mat-card-content> <strong> Year released: </strong> {{ result.year }}, <strong>Genre: </strong>
-        {{ result.genre }}</mat-card-content
-      >
-      <hr>
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+      *ngFor="let result of results.results"
+    >
+      <mat-card-title> {{ result.title }} <br /> </mat-card-title>
+
+      <mat-card-content>
+        <strong> Rating: </strong> {{ result.rating }}
+        <strong> Year released: </strong> {{ result.year }},
+        <strong>Genre: </strong> {{ result.genre }}
+      </mat-card-content>
+      <mat-divider></mat-divider>
     </div>
   </mat-card>
 </div>
-<ng-component #noResults></ng-component>
+<ng-component #noResults>Sorry! No movie found!</ng-component>
 
 <!-- 
  <div *ngIf="searchTerm">

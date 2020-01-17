@@ -12,6 +12,8 @@ export class FetchDataService {
 
   getMovies(searhTerm: string) {
     const URL = this.searchURL + searhTerm;
-    return this.http.get<object[]>(URL).pipe(pluck('results'));
+    return this.http.get<object>(URL);
   }
+
+  // fetchMovies()
 }
