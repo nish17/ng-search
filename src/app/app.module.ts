@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResultFeedComponent } from './result-feed/result-feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    ResultFeedComponent
   ],
   imports: [
     BrowserModule,
