@@ -3,6 +3,11 @@
   <form [formGroup]="SearchForm">
     Search:
     <input type="text" class="form-control" formControlName="search" />
+    <ul class="filter-select">
+      <li class="filter-select-list"><img src="" alt="" width="50" height="50"><p class="artist-name"></p>
+        <span class="tags"></span>
+        </li>
+    </ul>
     <div id="sideContent" class="code" formArrayName="categoryfilters">
       Categories: <br />
       <div
