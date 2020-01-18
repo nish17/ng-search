@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { FetchDataService } from '../fetch-data.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -26,15 +27,18 @@ export class SearchComponent implements OnInit {
       categoryfilters: new FormArray(this.controlArr)
       // new FormArray(this.controlArr)
     });
-    this.SearchForm.valueChanges.subscribe(
+    this.SearchForm.valueChanges
+      .pipe(debounceTime(200))
+      .pipe(distinctUntilChanged())
+      .subscribe(
       () => {
         console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value);
         this.searchTerm = this.SearchForm.get('search').value;
         this.fetchDataService.getMovies(this.searchTerm).subscribe((results) => {
-          this.results = results;
+          this.results = results['results'];
           this.previousURL = results['previous'];
           this.nextURL = results['next'];
-          console.log(`Here's the result: \n${JSON.stringify(results)}`);
+          // console.log(`Here's the result: \n${JSON.stringify(results)}`);
         });
         // console.log(`this.results===>\n${JSON.stringify(this.results)}`);
       });
