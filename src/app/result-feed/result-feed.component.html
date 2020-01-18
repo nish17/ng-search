@@ -3,10 +3,10 @@
     <div
       class="search-results"
       infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="50"
+      [infiniteScrollDistance]="0.5"
+      [infiniteScrollThrottle]="1000"
       (scrolled)="onScroll()"
-      *ngFor="let result of results.results"
+      *ngFor="let result of results"
     >
       <mat-card-title> {{ result.title }} <br /> </mat-card-title>
 
