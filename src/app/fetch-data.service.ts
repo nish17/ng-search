@@ -15,5 +15,7 @@ export class FetchDataService {
     return this.http.get<object>(URL);
   }
 
-  // fetchMovies()
+  fetchMovies(URL: string) {
+    return this.http.get<object>(URL);
+  }
 }
