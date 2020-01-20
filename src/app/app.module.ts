@@ -20,7 +20,7 @@ import { MatListModule } from '@angular/material/list';
     ResultFeedComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ReactiveFormsModule,
     MatCardModule,
