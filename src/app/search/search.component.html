@@ -12,12 +12,12 @@
       Categories: <br />
       <div
         *ngFor="
-          let filter of SearchForm.controls.categoryfilters.controls;
+          let filter of getControls();
           let i = index
         "
       >
         <mat-checkbox type="checkbox" [formControlName]="i" value>{{
-          categories[i]
+          fetchedCategories[i]
         }}</mat-checkbox>
       </div>
     </div>

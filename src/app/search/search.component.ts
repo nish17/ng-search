@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  @Input() categories;
+  // @Input() categories;
   fetchedCategories: string[];
   SearchForm: FormGroup;
   searchTerm: string;
@@ -35,8 +35,11 @@ export class SearchComponent implements OnInit {
         console.log(this.SearchForm.get('search').value, this.SearchForm.get('categoryfilters').value);
         this.searchTerm = this.SearchForm.get('search').value;
         this.fetchDataService.getMovies(this.searchTerm).subscribe((results) => {
+          // tslint:disable-next-line: no-string-literal
           this.results = results['results'];
+          // tslint:disable-next-line: no-string-literal
           this.previousURL = results['previous'];
+          // tslint:disable-next-line: no-string-literal
           this.nextURL = results['next'];
           // console.log(`Here's the result: \n${JSON.stringify(results)}`);
         });
@@ -44,6 +47,9 @@ export class SearchComponent implements OnInit {
       });
   }
 
+  getControls() {
+    return (this.SearchForm.get('categoryfilters') as FormArray).controls;
+  }
 
   getCategories() {
     this.categoryService.getCategories().subscribe(categories => {
